@@ -1,0 +1,46 @@
+.file-upload-form {
+  padding: 10px;
+  border-bottom: 1px solid #fff;
+}
+
+.form-section {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px;
+  margin-right: 10px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+}
+
+.green-button {
+  font-size: 14px;
+  padding: 10px;
+  cursor: pointer;
+  color: #fff;
+  background-color: limegreen;
+  border: none;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+.green-button:hover {
+  background-color: #3b8f32;
+}
+
+.button-side {
+  display: inline;
+  color: gray;
+  padding: 10px;
+}
+
+#file-input {
+  display: none;
+}
+
+.password-input {
+  font-size: 16px;
+  color: #fff;
+  background: none;
+  border: none;
+  outline: none;
+}

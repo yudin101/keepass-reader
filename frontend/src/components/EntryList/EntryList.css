@@ -1,0 +1,39 @@
+.entry-body {
+  padding: 25px;
+  margin: 10px 15px;
+  border: 2px solid #373e54;
+  border-radius: 20px;
+  background-color: #1e222e;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.entry-body:hover {
+  scale: 1.01;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 1);
+}
+
+.entry-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  color: #aaa;
+}
+
+.entry-title h3 {
+  color: #fff;
+  font-size: 19px;
+}
+
+.entry-details {
+  margin-top: 10px;
+}
+
+.entry-details p {
+  margin: 5px 0;
+}
+
+.hover-underline:hover {
+  text-decoration: underline;
+}
