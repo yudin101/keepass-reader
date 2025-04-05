@@ -12,6 +12,8 @@ export type Entry = {
   url?: string;
 };
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 const App = () => {
   const [entries, setEntries] = useState<Entry[]>([]);
   const [otherResponse, setOtherResponse] = useState<string | null>(null);
@@ -46,6 +48,7 @@ const App = () => {
       <FileUpload
         setEntriesFunc={handleEntries}
         setOtherResponse={handleOtherResponse}
+        backendUrl={backendUrl}
       />
       {entries.length !== 0 && (
         <input
@@ -60,9 +63,14 @@ const App = () => {
         <EntryList
           entries={filteredEntries}
           setOtherResponse={handleOtherResponse}
+          backendUrl={backendUrl}
         />
       ) : (
-        <EntryList entries={entries} setOtherResponse={handleOtherResponse} />
+        <EntryList
+          entries={entries}
+          setOtherResponse={handleOtherResponse}
+          backendUrl={backendUrl}
+        />
       )}
     </>
   );

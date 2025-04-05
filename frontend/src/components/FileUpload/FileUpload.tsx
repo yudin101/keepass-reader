@@ -5,11 +5,13 @@ import type { Entry } from "../../App";
 interface FunctionProps {
   setOtherResponse: (data: string) => void;
   setEntriesFunc: (data: Entry[]) => void;
+  backendUrl: string,
 }
 
 const FileUpload: React.FC<FunctionProps> = ({
   setEntriesFunc,
   setOtherResponse,
+  backendUrl,
 }) => {
   const [file, setFile] = useState<File | null>(null);
   const [fileName, setFileName] = useState<string | null>("No file chosen");
@@ -40,7 +42,7 @@ const FileUpload: React.FC<FunctionProps> = ({
     formData.append("db-file", file);
     formData.append("db-password", password);
 
-    const response = await fetch("http://localhost:5000/upload", {
+    const response = await fetch(`${backendUrl}/upload`, {
       method: "POST",
       body: formData,
     });

@@ -5,9 +5,14 @@ import React, { useState } from "react";
 interface Props {
   entries: Entry[];
   setOtherResponse: (data: string) => void;
+  backendUrl: string;
 }
 
-const EntryList: React.FC<Props> = ({ entries, setOtherResponse }) => {
+const EntryList: React.FC<Props> = ({
+  entries,
+  setOtherResponse,
+  backendUrl,
+}) => {
   const [selected, setSelected] = useState<string | null>(null);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [copyStatus, setCopyStatus] = useState("Copy");
@@ -46,7 +51,7 @@ const EntryList: React.FC<Props> = ({ entries, setOtherResponse }) => {
     const formData = new FormData();
     formData.append("title", title);
 
-    const response = await fetch("http://localhost:5000/update", {
+    const response = await fetch(`${backendUrl}/update`, {
       method: "POST",
       body: formData,
     });
