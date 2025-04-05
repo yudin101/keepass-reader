@@ -2,20 +2,17 @@ import React, { useState } from "react";
 import "./FileUpload.css";
 import type { Entry } from "../../App";
 
-type FileUploadProps = {
+interface FunctionProps {
+  setOtherResponse: (data: string) => void;
   setEntriesFunc: (data: Entry[]) => void;
-};
+}
 
-type OtherResponseProps = {
-  setOtherResponse: (data: String) => void;
-};
-
-const FileUpload = ({
+const FileUpload: React.FC<FunctionProps> = ({
   setEntriesFunc,
   setOtherResponse,
-}: FileUploadProps & OtherResponseProps) => {
+}) => {
   const [file, setFile] = useState<File | null>(null);
-  const [fileName, setFileName] = useState<String | null>("No file chosen");
+  const [fileName, setFileName] = useState<string | null>("No file chosen");
   const [password, setPassword] = useState("");
 
   const handleFile: React.ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -53,7 +50,7 @@ const FileUpload = ({
     if (data.entries) {
       setEntriesFunc(data.entries);
     } else {
-      setOtherResponse(data.message);
+      setOtherResponse(data.error);
     }
   };
 

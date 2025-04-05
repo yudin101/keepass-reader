@@ -10,6 +10,8 @@ CORS(app)
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
+kp = None
+
 
 @app.route("/upload", methods=["POST"])
 def upload():
@@ -26,14 +28,16 @@ def upload():
 
         password = request.form.get("db-password")
 
+        global kp
+
         try:
             kp = PyKeePass(file_path, password)
         except FileNotFoundError:
-            return jsonify({"message": "File not found!"}), 404
+            return jsonify({"error": "File not found!"}), 404
         except exceptions.CredentialsError:
-            return jsonify({"message": "Wrong Password!"}), 401
+            return jsonify({"error": "Wrong Password!"}), 401
         except exceptions.HeaderChecksumError:
-            return jsonify({"message": "Not a KeePass database!"}), 415
+            return jsonify({"error": "Not a KeePass database!"}), 415
 
         def get_otp(otp):
             if otp:
@@ -55,6 +59,25 @@ def upload():
         return jsonify({"message": "Entries sent!", "entries": entries}), 200
     else:
         return jsonify({"error": "Method Not Allowed!"}), 405
+
+
+@app.route("/update", methods=["POST"])
+def update():
+    if request.method == "POST":
+        global kp
+
+        title = request.form.get("title")
+
+        try:
+            entry = kp.find_entries(title=title, first=True)
+        except AttributeError:
+            return jsonify({"error": "Submit the database again!"}), 410
+
+        otp = pyotp.parse_uri(entry.otp).now()
+
+        return jsonify({"message": f"OTP updated for: {title}", "otp": otp}), 200
+    else:
+        return jsonify({"error": "Method Not Allowes!"}), 405
 
 
 if __name__ == "__main__":

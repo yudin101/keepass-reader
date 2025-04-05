@@ -4,12 +4,14 @@ import React, { useState } from "react";
 
 interface Props {
   entries: Entry[];
+  setOtherResponse: (data: string) => void;
 }
 
-const EntryList: React.FC<Props> = ({ entries }) => {
-  const [selected, setSelected] = useState<String | null>(null);
+const EntryList: React.FC<Props> = ({ entries, setOtherResponse }) => {
+  const [selected, setSelected] = useState<string | null>(null);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [copyStatus, setCopyStatus] = useState("Copy");
+  const [updatedOtp, setUpdatedOtp] = useState<string | null>(null);
 
   const handleClick = (selectedId: string) => {
     selected != selectedId ? setSelected(selectedId) : setSelected(null);
@@ -33,6 +35,29 @@ const EntryList: React.FC<Props> = ({ entries }) => {
       navigator.clipboard.writeText(password);
     }
     setCopyStatus("Copied");
+  };
+
+  const handleUpdate = async (
+    e: React.MouseEvent<HTMLSpanElement>,
+    title: string,
+  ) => {
+    e.stopPropagation();
+
+    const formData = new FormData();
+    formData.append("title", title);
+
+    const response = await fetch("http://localhost:5000/update", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (data.otp) {
+      setUpdatedOtp(data.otp);
+    } else {
+      setOtherResponse(data.error);
+    }
   };
 
   return (
@@ -70,7 +95,11 @@ const EntryList: React.FC<Props> = ({ entries }) => {
               </span>
               {entry.otp && (
                 <p>
-                  OTP: {entry.otp}{" "}
+                  OTP: {updatedOtp ? (entry.otp = updatedOtp) : entry.otp}{" "}
+                  <span onClick={(e) => handleUpdate(e, entry.title)}>
+                    {" | "}
+                    <span className="hover-underline">Update</span>
+                  </span>
                   <span onClick={(e) => handleCopy(e, entry.otp)}>
                     {" | "}
                     <span className="hover-underline">{copyStatus}</span>

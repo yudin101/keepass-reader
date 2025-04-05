@@ -14,15 +14,15 @@ export type Entry = {
 
 const App = () => {
   const [entries, setEntries] = useState<Entry[]>([]);
-  const [otherResponse, setOtherResponse] = useState<String | null>(null);
-  const [searchedEntry, setSearchedEntry] = useState<String>("");
+  const [otherResponse, setOtherResponse] = useState<string | null>(null);
+  const [searchedEntry, setSearchedEntry] = useState<string>("");
   const [filteredEntries, setFilteredEntries] = useState<Entry[]>([]);
 
   const handleEntries = (data: Entry[]) => {
     setEntries(data);
   };
 
-  const handleOtherResponse = (data: String) => {
+  const handleOtherResponse = (data: string) => {
     setOtherResponse(data);
   };
 
@@ -57,9 +57,12 @@ const App = () => {
       )}
 
       {entries.length !== 0 && searchedEntry !== "" ? (
-        <EntryList entries={filteredEntries} />
+        <EntryList
+          entries={filteredEntries}
+          setOtherResponse={handleOtherResponse}
+        />
       ) : (
-        <EntryList entries={entries} />
+        <EntryList entries={entries} setOtherResponse={handleOtherResponse} />
       )}
     </>
   );
