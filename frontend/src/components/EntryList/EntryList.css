@@ -34,6 +34,20 @@
   margin: 5px 0;
 }
 
+.edit-button-div {
+  display: flex;
+  justify-content: right;
+}
+
+.edit-button {
+  padding: 3px 5px;
+  background: none;
+  color: #fff;
+  border: 1px solid #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .hover-underline:hover {
   text-decoration: underline;
 }

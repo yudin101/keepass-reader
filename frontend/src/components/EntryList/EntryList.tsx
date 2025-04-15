@@ -1,6 +1,7 @@
 import "./EntryList.css";
 import { Entry } from "../../App";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface Props {
   entries: Entry[];
@@ -42,7 +43,7 @@ const EntryList: React.FC<Props> = ({
     setCopyStatus("Copied");
   };
 
-  const handleUpdate = async (
+  const handleOtpUpdate = async (
     e: React.MouseEvent<HTMLSpanElement>,
     title: string,
   ) => {
@@ -51,7 +52,7 @@ const EntryList: React.FC<Props> = ({
     const formData = new FormData();
     formData.append("title", title);
 
-    const response = await fetch(`${backendUrl}/update`, {
+    const response = await fetch(`${backendUrl}/updateOtp`, {
       method: "POST",
       body: formData,
     });
@@ -63,6 +64,10 @@ const EntryList: React.FC<Props> = ({
     } else {
       setOtherResponse(data.error);
     }
+  };
+
+  const handleEditClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.stopPropagation();
   };
 
   return (
@@ -101,7 +106,7 @@ const EntryList: React.FC<Props> = ({
               {entry.otp && (
                 <p>
                   OTP: {updatedOtp ? (entry.otp = updatedOtp) : entry.otp}{" "}
-                  <span onClick={(e) => handleUpdate(e, entry.title)}>
+                  <span onClick={(e) => handleOtpUpdate(e, entry.title)}>
                     {" | "}
                     <span className="hover-underline">Update</span>
                   </span>
@@ -111,6 +116,15 @@ const EntryList: React.FC<Props> = ({
                   </span>
                 </p>
               )}
+              <div className="edit-button-div">
+                <Link
+                  className="edit-button"
+                  onClick={(e) => handleEditClick(e)}
+                  to={`/edit/${entry.title}`}
+                >
+                  Edit
+                </Link>
+              </div>
             </div>
           ) : null}
         </div>

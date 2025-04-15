@@ -1,0 +1,17 @@
+.edit-form {
+  padding: 10px;
+}
+
+.edit-form-button {
+  padding: 10px;
+  font-size: 15px;
+  color: #fff;
+  background-color: limegreen;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.edit-form-button:hover {
+  background-color: #3b8f32;
+}

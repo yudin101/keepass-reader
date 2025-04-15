@@ -1,0 +1,30 @@
+.edit-form-div {
+  margin-bottom: 10px;
+}
+
+.input-div {
+  display: flex;
+  align-items: center;
+}
+
+.input-div input {
+  padding: 10px;
+  margin: 0 10px 5px 0;
+  color: #fff;
+  background: none;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.input-div button {
+  font-size: 14px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.input-div button:hover {
+  color: gray;
+}
