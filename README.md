@@ -1,4 +1,4 @@
-# KeePass Reader
+# WebKee
 Read KeePass database on the web.
 
 ## Run Locally
@@ -6,12 +6,12 @@ Read KeePass database on the web.
 **Clone the project**
 
 ```bash
-git clone git@github.com:yudin101/keepass-reader.git
+git clone git@github.com:yudin101/webkee.git
 ```
 ### Frontend
 
 ```bash
-cd keepass-reader/frontend
+cd webkee/frontend
 ```
 **Install dependencies**
 
@@ -30,7 +30,7 @@ Now, you should be able to see the frontend running on **http://localhost:5173**
 ### Backend
 
 ```bash
-cd keepass-reader/backend
+cd webkee/backend
 ```
 **Create a virtual environment**
 
@@ -63,10 +63,10 @@ Contributions are always welcome!
 
 If you’d like to contribute to this project, you can:
 
-- **Create an Issue**: Report bugs or suggest features by [creating an issue](https://github.com/yudin101/keepass-reader/issues/new).
-- **Open a Pull Request**: Submit code changes or improvements by [opening a pull request](https://github.com/yudin101/keepass-reader/pulls).
+- **Create an Issue**: Report bugs or suggest features by [creating an issue](https://github.com/yudin101/webkee/issues/new).
+- **Open a Pull Request**: Submit code changes or improvements by [opening a pull request](https://github.com/yudin101/webkee/pulls).
 
 
 ## License
 
-This project is licensed under the [MIT License](https://github.com/yudin101/keepass-reader/blob/main/LICENSE).
+This project is licensed under the [MIT License](https://github.com/yudin101/webkee/blob/main/LICENSE).
